@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# nix shell nixpkgs#pkgsCross.arm-embedded.buildPackages.gcc
-
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 KEYBOARD="massdrop/alt"
@@ -10,8 +8,9 @@ KEYMAP="custom_alt_config"
 FIRMWARE_DIR="$SCRIPT_DIR"
 BUILD_DIR="$FIRMWARE_DIR/.build"
 
-echo "=== Building $KEYBOARD:$KEYMAP ==="
-make -C "$FIRMWARE_DIR" "$KEYBOARD:$KEYMAP"
+echo "=== Building $KEYBOARD:$KEYMAP (via Docker) ==="
+docker build -t qmk-builder -f "$FIRMWARE_DIR/Dockerfile.build" "$FIRMWARE_DIR"
+docker run --rm -v "$FIRMWARE_DIR:/firmware" qmk-builder "$KEYBOARD:$KEYMAP"
 
 BIN_FILE=$(ls -t "$BUILD_DIR"/*.bin 2>/dev/null | head -1)
 if [ -z "$BIN_FILE" ]; then

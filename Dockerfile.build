@@ -1,0 +1,8 @@
+FROM alpine:3.20
+RUN apk add --no-cache \
+    arm-none-eabi-gcc \
+    arm-none-eabi-binutils \
+    arm-none-eabi-newlib \
+    make
+WORKDIR /firmware
+ENTRYPOINT ["make"]
