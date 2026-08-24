@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 KEYBOARD="massdrop/alt"
 KEYMAP="custom_alt_config"
-FIRMWARE_DIR="/var/git/qmk_firmware"
+FIRMWARE_DIR="$SCRIPT_DIR"
 BUILD_DIR="$FIRMWARE_DIR/.build"
 
 echo "=== Building $KEYBOARD:$KEYMAP ==="
