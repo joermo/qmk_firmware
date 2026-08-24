@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# nix shell nixpkgs#pkgsCross.arm-embedded.buildPackages.gcc
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 KEYBOARD="massdrop/alt"
