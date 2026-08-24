@@ -28,6 +28,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define I2C_LED_USE_DMA 1               //Set 1 to use background DMA transfers for leds, Set 0 to use inline software transfers
 
+__attribute__((__aligned__(16)))
+DmacDescriptor dmac_desc;
+__attribute__((__aligned__(16)))
+DmacDescriptor dmac_desc_wb;
+
 static uint8_t i2c_led_q[I2C_Q_SIZE];   //I2C queue circular buffer
 static uint8_t i2c_led_q_s;             //Start of circular buffer
 static uint8_t i2c_led_q_e;             //End of circular buffer

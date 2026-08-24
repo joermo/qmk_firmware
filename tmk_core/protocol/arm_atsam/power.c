@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "arm_atsam_protocol.h"
 
 uint64_t v_5v_cat_timer;        //Timer for recovery period post 5v catastrophic low voltage detected (and LED driver disable)(-1 indicates timer not active)
-uint64_t v_5v_low_timer;        //Timer for disabling USB extra device after causing a low voltage situation for an amount of time (-1 indicates timer not active)
+extern uint64_t v_5v_low_timer;        //Timer for disabling USB extra device after causing a low voltage situation for an amount of time (-1 indicates timer not active)
 
 //Returns 1 if the 5v bus is in a catastrophic low voltage condition
 //Returns 0 if the 5v bus is OK

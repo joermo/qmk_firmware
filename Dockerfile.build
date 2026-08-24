@@ -1,8 +1,8 @@
-FROM alpine:3.20
-RUN apk add --no-cache \
-    arm-none-eabi-gcc \
-    arm-none-eabi-binutils \
-    arm-none-eabi-newlib \
-    make
+FROM ubuntu:24.04
+RUN apt-get update && apt-get install -y \
+    gcc-arm-none-eabi \
+    binutils-arm-none-eabi \
+    make \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /firmware
 ENTRYPOINT ["make"]
